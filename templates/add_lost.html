@@ -1,0 +1,10 @@
+{% extends 'main.html' %}
+{% block content %}
+<div>
+    <form class="form-horizontal form_middle" enctype='multipart/form-data' method='POST' action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+{% endblock content %}
