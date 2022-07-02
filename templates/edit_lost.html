@@ -1,0 +1,10 @@
+{% extends 'main.html' %}
+{% block content %}
+<h3>Edit Lost Item...</h3><br/>
+<form action="" method=POST>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <br/>
+    <input type="submit" value="Update" class="btn btn-secondary">
+
+{% endblock content %}

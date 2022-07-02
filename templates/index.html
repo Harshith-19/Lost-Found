@@ -1,5 +1,6 @@
 {% extends 'main.html' %}
 {% block content %}
+{% load socialaccount %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -28,7 +29,11 @@
   <a href="/lost_item" class="btn btn-outline-dark btn-sm m-1">Lost</a>
 <hr>
 <h1>Have you Found anything?</h1>
+{% if user.is_authenticated %}
 <a href="/add_found" class="btn btn-outline-dark btn-sm m-1">Found</a>
+{% else %}
+<a href="{% provider_login_url 'google' %}" class="btn btn-outline-dark btn-sm m-1">Found</a>
+{% endif %}
   </body>
 </html>
 {% endblock %}

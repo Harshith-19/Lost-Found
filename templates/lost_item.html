@@ -1,5 +1,6 @@
 {% extends 'main.html' %}
 {% block content %}
+{% load socialaccount %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -32,8 +33,11 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+        {% if user.is_authenticated %}
         <a href="/add_lost" class="btn btn-outline-dark btn-sm m-1">Post</a>
- 
+        {% else %}
+        <a href="{% provider_login_url 'google' %}" class="btn btn-outline-dark btn-sm m-1">Post</a>
+        {% endif %}
       </div>
     </nav>
 

@@ -38,12 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'django.contrib.sites',
+    'django.contrib.sites',
     'home.apps.HomeConfig',
-    # 'allauth',
-    # 'allauth.account',
-    # 'allauth.socialaccount',
-    # 'allauth.socialaccount.providers.google',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -74,10 +74,6 @@ TEMPLATES = [
     },
 ]
 
-# AUTHENTICATION_BACKENDS = [
-#     'django.contrib.auth.backends.ModelBackend',
-#     'allauth.account.auth_backends.AuthenticationBackend',
-# ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
@@ -141,17 +137,27 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = BASE_DIR / "static/images"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# SITE_ID = 1
-# LOGIN_REDIRECT_URL = '/'
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+]
 
-# SOCIALACCOUNT_PROVIDERS = {
-#     'google' : {
-#         'SCOPE' : [
-#             'profile',
-#             'email',
-#         ],
-#         'AUTH_PARAMS' : {
-#             'access_type' : 'online',
-#         }
-#     }
-# }
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '326555849145-ri5p81fp7eunhu8ep07e8n4td2rp7fqm.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+SITE_ID = 2
+SOCIALACCOUNT_LOGIN_ON_GET = True

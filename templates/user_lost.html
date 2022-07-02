@@ -29,28 +29,31 @@
 
   <div class="container" style="padding-top: 50px;">
     <div class="row">
-
-      
         <div class="col-md-12">
             <div class="row">
+
                 {% for item in items %}
+                {% if request.user == item.user_name %}
+                    
                 <div class="col-md-3">
                     <div class="card my-2" style="position: relative">
                       <img class="image-thumbail" src="/static/images{{item.image.url}}" alt="Card image cap">
                       <h5 class="card-title">{{ item.item_name }}</h5>
                       <p class="card-text">{{item.description}}</p>
                       <a href="https://www.google.co.in/maps" class="btn btn-outline-dark btn-sm m-1">View Details</a>
+                      <a href="{% url 'edit_lost' item.id %}" class="btn btn-outline-dark btn-sm m-1">Edit Details</a>
+                      <a href="{% url 'delete_lost' item.id %}" class="btn btn-outline-danger btn-sm m-1">Delete Details</a>
                     </div>
                 </div>
+                {% endif %}
         
                 {% endfor %}
-
+                <!-- Button trigger modal -->
 
 
             </div>
         </div>
     </div>
-    
 </div>
 
 </body>
